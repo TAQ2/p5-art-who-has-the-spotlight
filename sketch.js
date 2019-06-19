@@ -88,7 +88,8 @@ class Boid {
     if (this.willEnlarge) {
       // increase the radius exponentially using a magic scale
       this.radius +=
-        Math.pow((Math.E * scale) / 2.5, (this.radius * scale) / 5000) - 1;
+        Math.pow((Math.E * scale) / 2.5, (this.radius * scale) / 5000) -
+        scale / 60;
       return;
     }
 
