@@ -4,8 +4,8 @@
 // CONSTANTS
 /////////////////////////////////////////
 
-const width = 600;
-const height = 600;
+const width = window.innerWidth;
+const height = window.innerHeight;
 const centre = [width / 2, height / 2];
 const scale = (width / height) * 30;
 
@@ -33,13 +33,12 @@ class Boid {
     this.colour = this.createRandomColour();
     this.canCrossBorder = random() > 0.7;
     this.willEnlarge = false;
-    this.radius = scale / 10;
+    this.radius = scale / 12;
   }
 
   createRandomColour() {
     const colors = randomColor({
       count: 1,
-      // luminosity: "dark",
       hue: randomHue,
       format: "rgbArray"
     });
@@ -85,7 +84,7 @@ class Boid {
   update() {
     if (this.willEnlarge) {
       // increase the radius exponentially using a magic scale
-      this.radius += Math.pow(Math.E * 12, (this.radius * scale) / 7000) - 0.8;
+      this.radius += Math.pow(Math.E * 12, (this.radius * scale) / 7000) - 1;
       return;
     }
 
@@ -145,7 +144,7 @@ function draw() {
 
   flock = newFlock;
 
-  if (enlargedBoid == null && flock.length < 800) {
+  if (enlargedBoid == null && flock.length < 750) {
     enlargedBoid = flock[flock.length - 1];
     enlargedBoid.setWillEnlarge();
   }
