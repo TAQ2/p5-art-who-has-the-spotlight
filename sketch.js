@@ -21,6 +21,9 @@ const randomHues = [
 ];
 let randomHue = randomHues[0];
 
+let flock = [];
+let backgroundColour;
+
 /////////////////////////////////////////
 // BOID
 /////////////////////////////////////////
@@ -84,7 +87,8 @@ class Boid {
   update() {
     if (this.willEnlarge) {
       // increase the radius exponentially using a magic scale
-      this.radius += Math.pow(Math.E * 12, (this.radius * scale) / 7000) - 1;
+      this.radius +=
+        Math.pow((Math.E * scale) / 2.5, (this.radius * scale) / 5000) - 1;
       return;
     }
 
@@ -104,9 +108,6 @@ class Boid {
 /////////////////////////////////////////
 // MAIN
 /////////////////////////////////////////
-
-let flock = [];
-let backgroundColour;
 
 function setup() {
   createCanvas(width, height);
@@ -144,7 +145,7 @@ function draw() {
 
   flock = newFlock;
 
-  if (enlargedBoid == null && flock.length < 750) {
+  if (enlargedBoid == null && flock.length < 799) {
     enlargedBoid = flock[flock.length - 1];
     enlargedBoid.setWillEnlarge();
   }
