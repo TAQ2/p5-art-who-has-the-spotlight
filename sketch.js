@@ -7,10 +7,11 @@
 const width = window.innerWidth;
 const height = window.innerHeight;
 const centre = [width / 2, height / 2];
-const scale = (width / height) * 30;
+const scale = 30;
 
 let enlargedBoid;
 const randomHues = [
+  // needed for randomising the randomColour function
   "red",
   "orange",
   "yellow",
@@ -34,9 +35,9 @@ class Boid {
     this.vel = p5.Vector.random2D().setMag(scale / 400);
     this.acc = createVector();
     this.colour = this.createRandomColour();
-    this.canCrossBorder = random() > 0.7;
+    this.canCrossBorder = random() > 0.6;
     this.willEnlarge = false;
-    this.radius = scale / 12;
+    this.radius = 7;
   }
 
   createRandomColour() {
